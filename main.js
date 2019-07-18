@@ -198,12 +198,39 @@ function reverseSliceArray(array1) {
 	let iEndCount = array1.length 
 	for(let iCount1 = 0; iCount1 < iEndCount/2; iCount1++){
 		
-		[array1[iCount1], array1[(iEndCount-1)-iCount1]] = [array1[(iEndCount-1)-iCount1], array1[iCount1]]
-		console.log("step: "+iCount1+", "+array1)
+		[array1[iCount1], array1[(iEndCount-1)-iCount1]] = [array1[(iEndCount-1)-iCount1], array1[iCount1]];
 	}
 }
 
-let aTestArray = rangeN(1,10)
-reverseSliceArray(aTestArray)
+let aTestArray = rangeN(1,10);
+reverseSliceArray(aTestArray);
 
-console.log(aTestArray)
+console.log(aTestArray);
+
+
+console.log("Exercise: 10 > arrayToList");
+
+function arrayToList(listArray) {
+	let arrayList = null;
+	let listArrayReversed = reverseArray(listArray);
+	for (let value of listArrayReversed){
+		arrayList = buildList(value,arrayList);
+
+	}
+
+	return arrayList;
+}
+
+function buildList(valueEnter, restEnter = null) {
+	let nestList = {};
+	nestList.value = valueEnter;
+	nestList.rest = restEnter;
+	return nestList;
+}
+
+
+
+console.log(buildList(1,2));
+console.log(arrayToList([1,2,3]));
+let testList = arrayToList([1,2,3]);
+console.log(testList.rest.rest);
