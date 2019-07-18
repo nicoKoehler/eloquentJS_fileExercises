@@ -185,22 +185,25 @@ console.log("Exercise: 9 > reverseArray")
 function reverseArray(array) {
 	let newArray=[]; 
 	for (iCount = array.length-1; iCount >= 0; iCount --){
-		console.log(iCount);
 		newArray.push(array[iCount])
 	}
 
 	return newArray;
 }
 
-console.log(reverseArray(rangeN(1,10)))
+console.log("simple reverse: "+reverseArray(rangeN(1,10)))
 
-function reverseSliceArray(array, start, end) {
-	console.log(array.slice(0,start).concat(array.slice(start+1, end-1)))
-	console.log(array.concat(reverseArray(array.slice(start+1, end-1))))
-	array.slice(0,start).concat(reverseArray(array.slice(start+1, end-1))).concat(array.slice(end,array.length))
+function reverseSliceArray(array1) {
+
+	let iEndCount = array1.length 
+	for(let iCount1 = 0; iCount1 < iEndCount/2; iCount1++){
+		
+		[array1[iCount1], array1[(iEndCount-1)-iCount1]] = [array1[(iEndCount-1)-iCount1], array1[iCount1]]
+		console.log("step: "+iCount1+", "+array1)
+	}
 }
 
 let aTestArray = rangeN(1,10)
-reverseSliceArray(aTestArray,2,4)
+reverseSliceArray(aTestArray)
 
 console.log(aTestArray)
