@@ -232,32 +232,38 @@ function buildList(valueEnter, restEnter = null) {
 console.log("Exercise: 11 > deep comparison");
 
 function deepComp(comp1, comp2) {
-	console.log(comp1, comp2)
+
 	if (!((comp1 == null)^(comp2 == null))){
 
-	
-		if(typeof(comp1) == "object" && typeof(comp2) == "object"){
-				for(let key of Object.keys(comp1)){
-					console.log(key);
+		if(typeof(comp1) == "object" && typeof(comp2) == "object" && comp1 != null){
+
+			for(let key of Object.keys(comp1)){
+
 					if(!(key in comp2)){
 						return false;
 					}else{
-						deepComp(comp1[key], comp2[key]);
+						if (!deepComp(comp1[key], comp2[key])){
+							return false;
+						}
 					}
 				}
 
-		}else if(!(comp1 === comp2)){
+		}else if((comp1 !== comp2)){
+
 			return false;}
 
 		return true;
 
+	}else{return false;}
 
-	}else{console.log("One null found")}
+
 	
 }
 
-let testObj1 = {value: 1, rest: 2};
-let testObj2 = {value: 2, rest: 2};
-console.log(typeof(testObj1), typeof(testObj2))
-console.log(deepComp(testObj1,testObj2));
+
+let testObj1 = {value: 1, rest: null};
+let testObj2 = {value: 1, rest: null};
+//console.log(typeof(testObj1), typeof(testObj2))
+console.log(deepComp(arrayToList([1,2,3,4]),arrayToList([1,2,3,5])));
+//console.log(deepComp(testObj1,testObj2));
 
